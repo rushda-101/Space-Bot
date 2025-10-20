@@ -11,13 +11,15 @@ Python time module.
 ## Section 1: Webex Messaging API (7 marks)✅
 | Criteria | Details |
 |---------|---------|
-| API Base URL | `_______________________________` |
-| Authentication Method | `_______________________________` |
-| Endpoint to list rooms | `_______________________________` |
-| Endpoint to get messages | `_______________________________` |
-| Endpoint to send message | `_______________________________` |
-| Required headers | `_______________________________` |
-| Sample full GET or POST request | `_______________________________` |
+| API Base URL | `https://webexapis.com/v1/` |
+| Authentication Method | `Bot Access Token (Bearer Token in HTTP header)` |
+| Endpoint to list rooms | `/rooms` |
+| Endpoint to get messages | `/messages?roomId={roomId}` |
+| Endpoint to send message | `/messages` |
+| Required headers | `Authorization: Bearer {ACCESS_TOKEN}
+Content-Type: application/json` |
+| Sample full GET or POST request | `POST https://webexapis.com/v1/messages
+Body:` |
 ---
 ## Section 2: ISS Current Location API (3 marks)
 | Criteria | Details |
