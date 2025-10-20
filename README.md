@@ -17,7 +17,13 @@ Python time module.
 | Endpoint to get messages | `/messages?roomId={roomId}` |
 | Endpoint to send message | `/messages` |
 | Required headers | `Authorization: Bearer {ACCESS_TOKEN} Content-Type: application/json` |
-| Sample full GET or POST request | `P` |
+| Sample full GET or POST request | `POST https://webexapis.com/v1/messages
+Body:
+	```json
+{	
+"roomId": "Y2lzY29zcGFyazovL3VzL1JPT00v123456789",	
+"text": "Hello from Space Bot!"	
+}` |
 ---
 ## Section 2: ISS Current Location API (3 marks)
 | Criteria | Details |
