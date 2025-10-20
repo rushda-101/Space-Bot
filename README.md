@@ -40,14 +40,23 @@ Python time module.
 ## Section 3: Geocoding API (LocationIQ or Mapbox or other) (6 marks)
 | Criteria | Details |
 |---------|---------|
-| Provider used (circle one) | **LocationIQ / Mapbox/ other -provide detail** |
-| API Base URL | `_______________________________` |
-| Endpoint for reverse geocoding | `_______________________________` |
-| Authentication method | `_______________________________` |
-| Required query parameters | `_______________________________` |
-| Sample request with latitude/longitude | `_______________________________` |
+| Provider used (circle one) | `Mapbox` |
+| API Base URL | `https://api.mapbox.com/geocoding/v5/` |
+| Endpoint for reverse geocoding | `/mapbox.places/{longitude},{latitude}.json` |
+| Authentication method | `Access Token (`access_token=YOUR_MAPBOX_TOKEN` |
+| Required query parameters | `longitude`, `latitude`, `access_token` |
+| Sample request with latitude/longitude | `https://api.mapbox.com/geocoding/v5/mapbox.places/100.75,1.5.json?access_token=YOUR_MAPBOX_TOKEN` |
 | Sample JSON response (formatted example) |
 ```
+{
+"type": "FeatureCollection",
+"query": [100.75, 1.5],
+"features": [
+{
+"place_name": "Singapore, Republic of Singapore"
+}
+]
+}
 ```
 |
 ---
