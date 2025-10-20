@@ -81,9 +81,10 @@ print(readable_time)
 - **Server**:
 - (Explain the communication between them & include a block diagram )
 ### 🚀 RESTful API Usage
--
--
--
+- APIs use HTTP methods like GET (to retrieve data) and POST (to send data).
+- Data is exchanged in JSON format.
+- Each API call is stateless, meaning each request contains all information needed.
+- Authentication is done using Bearer tokens (for Webex and Mapbox).
 ### 🚀 MVC Pattern in Space Bot
 | Component | Description |
 |------------|-------------|
