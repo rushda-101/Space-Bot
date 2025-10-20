@@ -87,13 +87,13 @@ print(readable_time)
 ### 🚀 MVC Pattern in Space Bot
 | Component | Description |
 |------------|-------------|
-| **Model** | |
-| **View** | |
-| **Controller** | |
+| **Model** | Handles data – retrieves and stores ISS and geocoding data. |
+| **View** | The Webex chat output. The user sees formatted messages. |
+| **Controller** | The main Python logic that connects APIs and decides what message to send back. |
 #### Example:
-- Model:
-- View:
-- Controller:
+- Model: ISS API + Geocoding API calls
+- View: “The ISS is currently over Singapore at 2024-04-14 06:40:32.”
+- Controller: Receives Webex message “Where is the ISS?”, triggers API calls, and formats the reply.
 ---
 ### 🚀 Notes
 - Use official documentation for accuracy (e.g. developer.webex.com, locationiq.com
