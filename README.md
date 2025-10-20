@@ -63,13 +63,17 @@ Python time module.
 ## 🚀 Section 4: Epoch to Human Time Conversion (Python time module) (2 marks)
 | Criteria | Details |
 |---------|---------|
-| Library used | `_______________________________` |
-| Function used to convert epoch | `_______________________________` |
+| Library used | `time` |
+| Function used to convert epoch | `time.strftime()` and `time.localtime()` |
 | Sample code to convert timestamp |
 ```
+import time
+timestamp = 1713105632
+readable_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(timestamp))
+print(readable_time)
 ```
 |
-| Output (human-readable time) | `_______________________________` |
+| Output (human-readable time) | `2024-04-14 06:40:32` |
 ---
 ## 🚀 Section 5: Web Architecture & MVC Design Pattern (12 marks)
 ### 🚀 Web Architecture – Client-Server Model
