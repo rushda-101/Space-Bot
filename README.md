@@ -22,10 +22,18 @@ Python time module.
 ## Section 2: ISS Current Location API (3 marks)
 | Criteria | Details |
 |---------|---------|
-| API Base URL | `_______________________________` |
-| Endpoint for current ISS location | `_______________________________` |
+| API Base URL | `http://api.open-notify.org/` |
+| Endpoint for current ISS location | `/iss-now.json` |
 | Sample response format (example JSON) |
 ```
+{
+"timestamp": 1713105632,
+"iss_position": {
+"latitude": "47.6062",
+"longitude": "-122.3321"
+},
+"message": "success"
+}
 ```
 |
 ---
