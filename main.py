@@ -7,23 +7,9 @@
 # - Discovers GPS coordinates of the ISS flyover using ISS API.
 # - Display the geographical location using geolocation API based on the GPS coordinates.
 # - Formats and sends the results back to the Webex Team room.
-#
-# The student will:
-# 1. Import libraries for API requests, JSON formatting, epoch time conversion, and iso3166.
-# 2. Complete the if statement to ask the user for the Webex access token.
-# 3. Provide the URL to the Webex room API.
-# 4. Create a loop to print the type and title of each room.
-# 5. Provide the URL to the Webex messages API.
-# 6. Provide the URL to the ISS Current Location API.
-# 7. Record the ISS GPS coordinates and timestamp.
-# 8. Convert the timestamp epoch value to a human readable date and time.
-# 9. Provide your Geoloaction API consumer key.
-# 10. Provide the URL to the Geoloaction address API.
-# 11. Store the location received from the Geoloaction API in a variable.
-# 12. Complete the code to format the response message.
-# 13. Complete the code to post the message to the Webex room.
-###############################################################
- 
+
+
+
 # 1. Import libraries for API requests, JSON formatting, epoch time conversion, and iso3166.
 
 import requests
@@ -39,7 +25,7 @@ choice = input("Do you wish to use the hard-coded Webex token? (y/n) ")
 if choice.lower() == "n":
     accessToken = "Bearer " + input("Enter your Webex Access Token: ")
 else:
-    accessToken = "Bearer OWNiYmE5ZDUtYzdmOC00ZTY4LWIyNzgtYzkwNWNmNWM5OGU4Y2EwNjE0NmItOTdj_PE93_d68b3fe9-4c07-4dad-8882-3b3fd6afb92d"
+    accessToken = "Bearer MzE4ZjdjNmUtMGVhMy00NTIyLWEzNTMtMDljYjM5MjU5Nzc2MmYwODcyYWMtOWMy_PE93_d68b3fe9-4c07-4dad-8882-3b3fd6afb92d"
 
 
 # 3. Provide the URL to the Webex room API.
@@ -110,8 +96,7 @@ while True:
     json_data = r.json()
     if len(json_data["items"]) == 0:
         print("No messages found yet.")
-        continue
-         #<!!!REPLACEME with code for error handling>    
+        continue  
     
     messages = json_data["items"]
     message = messages[0]["text"]
@@ -123,7 +108,6 @@ while True:
         else:
             print("Error: Message after '/' must be a number.")
             continue
-             #<!!!REPLACEME with code for error handling>
     
     #for the sake of testing, the max number of seconds is set to 5.
         if seconds > 5:
@@ -139,7 +123,6 @@ while True:
         if not r.status_code == 200:
             print("Error retrieving ISS data.")
             continue
-        #<!!!REPLACEME with code for error handling in case not success response>
 
 # 7. Record the ISS GPS coordinates and timestamp.
 
@@ -153,7 +136,7 @@ while True:
    
 # 9. Provide your Geoloaction API consumer key.
     
-        geo_key = "YOUR_GEOLOCATION_API_KEY"
+        geo_key = "37d0569718539a79bbe689e6249a8791"
     
         mapsAPIGetParameters = { 
                 "lat": lat,
@@ -162,39 +145,35 @@ while True:
                 "apiKey": geo_key
                 }
 
-# 10. Provide the URL to the Reverse GeoCode API.
-    # Get location information using the API reverse geocode service using the HTTP GET method
-        r = requests.get("https://api.opencagedata.com/geocode/v1/json", 
-                         params={
-                             "q": f"{lat}+{lng}",
-                             "key": geo_key
-                             })
+# 10. Use OpenWeather Reverse Geocoding API instead of OpenCage
+        r = requests.get("http://api.openweathermap.org/geo/1.0/reverse",
+                 params={
+                     "lat": lat,
+                     "lon": lng,
+                     "limit": 1,
+                     "appid": geo_key
+                     })
 
         if not r.status_code == 200:
             print("Error: Geolocation API request failed.")
             continue
 
-    # Verify if the returned JSON data from the API service are OK
         json_data = r.json()
 
-        if len(json_data["results"]) == 0:
+        if len(json_data) == 0:
             print("Error: No geolocation data found.")
             continue
-        
-        #<!!!REPLACEME with code for error handling in case no response>
 
-# 11. Store the location received from the API in a required variables
-        location = json_data["results"][0]["components"]
-        CountryResult = location.get("country_code", "XZ").upper()
+# 11. Store the location received from the API
+        location = json_data[0]
+        CountryResult = location.get("country", "XZ").upper()
         StateResult = location.get("state", "Unknown")
-        CityResult = location.get("city", location.get("town", location.get("village", "Unknown")))
-        StreetResult = location.get("road", "Unknown")
-        
-        #Find the country name using ISO3611 country code
-        if not CountryResult == "XZ":
-            CountryResult = countries.get(CountryResult).name
+        CityResult = location.get("name", "Unknown")
+        StreetResult = "Unknown"  # OpenWeather doesn't return street-level data
 
-        #CountryResult = json_data["<!!!REPLACEME!!!> with path to adminArea1 key!!!>"]
+# Convert ISO country code to full name
+        if CountryResult != "XZ":
+            CountryResult = countries.get(CountryResult).name
 
 
 # 12. Complete the code to format the response message.
