@@ -77,9 +77,26 @@ print(readable_time)
 ---
 ## 🚀 Section 5: Web Architecture & MVC Design Pattern (12 marks)
 ### 🚀 Web Architecture – Client-Server Model
-- **Client**:
-- **Server**:
-- (Explain the communication between them & include a block diagram )
+- **Client**: The Webex user or chat interface where users send and receive messages.
+- **Server**: The Space Bot backend (Python app) that communicates with APIs and processes data.
+
+Communication:
+- The client (Webex chat) sends a message
+- Webex forwards the message to your Space Bot server via its API →
+- The bot calls the ISS and Geocoding APIs
+- The server formats a response (e.g., ISS location) and sends it back to Webex for display to the user.
+
+[User in Webex]
+      |
+      v
+[Webex Messaging API]
+      |
+      v
+[Space Bot Server (Python Flask)]
+      |
+      v
+[ISS API] ---- [Geocoding API]
+
 ### 🚀 RESTful API Usage
 - APIs use HTTP methods like GET (to retrieve data) and POST (to send data).
 - Data is exchanged in JSON format.
